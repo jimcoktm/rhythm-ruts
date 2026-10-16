@@ -226,16 +226,34 @@ function blitWheel(
   if (wheel && wheel.complete && wheel.naturalWidth) {
     ctx.drawImage(wheel, -radius, -radius, radius * 2, radius * 2);
   } else {
-    ctx.fillStyle = PAL.charcoal;
+    ctx.fillStyle = "#1c1916";
     ctx.beginPath();
     ctx.arc(0, 0, radius, 0, Math.PI * 2);
     ctx.fill();
+    ctx.fillStyle = "#3a342c";
+    const knobs = 14;
+    for (let i = 0; i < knobs; i++) {
+      ctx.save();
+      ctx.rotate((i / knobs) * Math.PI * 2);
+      ctx.fillRect(-radius * 0.11, -radius * 1.04, radius * 0.22, radius * 0.2);
+      ctx.restore();
+    }
     ctx.strokeStyle = PAL.cream;
-    ctx.lineWidth = Math.max(1.5, radius * 0.14);
+    ctx.lineWidth = Math.max(1.4, radius * 0.07);
+    ctx.beginPath();
+    ctx.arc(0, 0, radius * 0.58, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.lineWidth = Math.max(1, radius * 0.035);
+    ctx.beginPath();
+    for (let i = 0; i < 5; i++) {
+      const a = (i / 5) * Math.PI * 2 + 0.2;
+      ctx.moveTo(Math.cos(a) * radius * 0.18, Math.sin(a) * radius * 0.18);
+      ctx.lineTo(Math.cos(a) * radius * 0.55, Math.sin(a) * radius * 0.55);
+    }
     ctx.stroke();
     ctx.fillStyle = PAL.rust;
     ctx.beginPath();
-    ctx.arc(0, 0, radius * 0.34, 0, Math.PI * 2);
+    ctx.arc(0, 0, radius * 0.16, 0, Math.PI * 2);
     ctx.fill();
   }
   ctx.restore();
@@ -282,12 +300,40 @@ function drawBike(
     const dh = bike.naturalHeight * scale;
     ctx.drawImage(bike, -REAR_U * dw, -REAR_V * dh, dw, dh);
   } else {
-    ctx.fillStyle = PAL.charcoal;
-    ctx.fillRect(0, -8 * zoom, WHEELBASE * zoom, 7 * zoom);
+    const wb = WHEELBASE * zoom;
+    const z = zoom;
+    ctx.strokeStyle = PAL.charcoal;
+    ctx.lineWidth = 5.5 * z;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.beginPath();
+    ctx.moveTo(8 * z, -2 * z);
+    ctx.lineTo(wb * 0.46, -18 * z);
+    ctx.lineTo(wb * 0.78, -12 * z);
+    ctx.lineTo(wb * 0.92, -2 * z);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(wb * 0.46, -18 * z);
+    ctx.lineTo(wb * 0.58, -36 * z);
+    ctx.lineTo(wb * 0.82, -30 * z);
+    ctx.lineTo(wb * 0.9, -8 * z);
+    ctx.stroke();
     ctx.fillStyle = PAL.rust;
     ctx.beginPath();
-    ctx.arc(WHEELBASE * 0.42 * zoom, -22 * zoom, 11 * zoom, 0, Math.PI * 2);
+    ctx.ellipse(wb * 0.5, -32 * z, 18 * z, 10 * z, -0.35, 0, Math.PI * 2);
     ctx.fill();
+    ctx.fillStyle = PAL.charcoal;
+    ctx.beginPath();
+    ctx.moveTo(wb * 0.18, -34 * z);
+    ctx.lineTo(wb * 0.52, -38 * z);
+    ctx.lineTo(wb * 0.5, -30 * z);
+    ctx.lineTo(wb * 0.22, -28 * z);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = PAL.cream;
+    ctx.fillRect(wb * 0.72, -46 * z, 16 * z, 12 * z);
+    ctx.fillStyle = PAL.charcoal;
+    ctx.fillRect(wb * 0.75, -43 * z, 10 * z, 2.2 * z);
   }
   blitWheel(ctx, wheel, radius, run.wheelSpin);
   ctx.save();
