@@ -28,23 +28,29 @@ const SHARE_META_KEYS = new Set([
   "x:game:image:height",
 ]);
 
+const HTML_AMP = "&" + "amp;";
+const HTML_LT = "&" + "lt;";
+const HTML_GT = "&" + "gt;";
+const HTML_QUOT = "&" + "quot;";
+const HTML_APOS = "&" + "#39;";
+
 export function escapeHtml(value) {
   return String(value)
-    .replaceAll("&", "&")
-    .replaceAll("<", "<")
-    .replaceAll(">", ">")
-    .replaceAll('"', """)
-    .replaceAll("'", "&#39;");
+    .replaceAll("&", HTML_AMP)
+    .replaceAll("<", HTML_LT)
+    .replaceAll(">", HTML_GT)
+    .replaceAll('"', HTML_QUOT)
+    .replaceAll("'", HTML_APOS);
 }
 
-/** Inverse of escapeHtml. Decode & last so a single pass undoes one encode. */
+/** Inverse of escapeHtml. Decode amp last so a single pass undoes one encode. */
 function unescapeHtml(value) {
   return String(value)
-    .replaceAll("<", "<")
-    .replaceAll(">", ">")
-    .replaceAll(""", '"')
-    .replaceAll("&#39;", "'")
-    .replaceAll("&", "&");
+    .replaceAll(HTML_LT, "<")
+    .replaceAll(HTML_GT, ">")
+    .replaceAll(HTML_QUOT, '"')
+    .replaceAll(HTML_APOS, "'")
+    .replaceAll(HTML_AMP, "&");
 }
 
 /** 6-digit hex for the og.grok.me placeholder, or "" if site.color is missing/invalid. */
