@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img" aria-label="Rhythm Ruts">
+  <rect width="16" height="16" rx="3.5" fill="#141311"/>
+  <circle cx="9.3" cy="9.6" r="4.15" fill="none" stroke="#e2b657" stroke-width="1.8"/>
+  <circle cx="9.3" cy="9.6" r="1.15" fill="#e2b657"/>
+  <circle cx="6.1" cy="4.5" r="1.9" fill="#c45c32"/>
+  <path d="M5.3 6.5 8.6 8.4" stroke="#c45c32" stroke-width="1.75" stroke-linecap="round"/>
+  <path d="M4.2 11.6 8.2 8.6" stroke="#f3efe6" stroke-width="1.35" stroke-linecap="round"/>
+</svg>
