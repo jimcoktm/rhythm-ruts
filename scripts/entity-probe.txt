@@ -1,1 +1,5 @@
-AMP:&amp; LT:&lt; GT:&gt; QUOT:" NBSP:&nbsp; NUM:&#39; RAW:&
+P0:hello
+P1:\u0026quot;
+P2:\u0026amp;
+P3:\u0026lt;
+P4:\u0026amp;quot;
